@@ -1,0 +1,108 @@
+-- Table: public.usuarios
+
+-- DROP TABLE IF EXISTS public.usuarios;
+
+CREATE TABLE IF NOT EXISTS public.usuarios
+(
+    id_usuario integer NOT NULL DEFAULT nextval('usuarios_id_usuario_seq'::regclass),
+    nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    "contraseña" character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    rol character varying(50) COLLATE pg_catalog."default",
+    id_refugio integer,
+    fecha_registro timestamp with time zone,
+    CONSTRAINT usuarios_pkey PRIMARY KEY (id_usuario),
+    CONSTRAINT usuarios_email_key UNIQUE (email)
+)
+
+TABLESPACE pg_default;
+
+-- Table: public.refugios
+
+-- DROP TABLE IF EXISTS public.refugios;
+
+CREATE TABLE IF NOT EXISTS public.refugios
+(
+    id_refugio integer NOT NULL DEFAULT nextval('refugios_id_refugio_seq'::regclass),
+    nombre_refugio character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    direccion_refugio text COLLATE pg_catalog."default" NOT NULL,
+    telefono_efugio character varying(15) COLLATE pg_catalog."default",
+    email_refugio character varying(100) COLLATE pg_catalog."default",
+    descripcion text COLLATE pg_catalog."default",
+    id_usuario integer
+)
+
+TABLESPACE pg_default;
+
+-- Table: public.mascotas
+
+-- DROP TABLE IF EXISTS public.mascotas;
+
+CREATE TABLE IF NOT EXISTS public.mascotas
+(
+    id_mascota integer NOT NULL DEFAULT nextval('mascotas_id_mascota_seq'::regclass),
+    nombre_mascota character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    edad_mascota integer,
+    especie character varying(50) COLLATE pg_catalog."default",
+    raza character varying(50) COLLATE pg_catalog."default",
+    "tamaño" character varying(50) COLLATE pg_catalog."default",
+    descripcion_mascota text COLLATE pg_catalog."default",
+    foto text COLLATE pg_catalog."default",
+    estado_salud character varying(100) COLLATE pg_catalog."default",
+    id_refugio integer NOT NULL,
+    fecha_registro timestamp with time zone,
+    CONSTRAINT mascotas_pkey PRIMARY KEY (id_mascota)
+)
+
+TABLESPACE pg_default;
+
+-- Table: public.adopciones
+
+-- DROP TABLE IF EXISTS public.adopciones;
+
+CREATE TABLE IF NOT EXISTS public.adopciones
+(
+    id_adopcion integer NOT NULL DEFAULT nextval('adopciones_id_adopcion_seq'::regclass),
+    id_usuario integer NOT NULL,
+    id_mascota integer NOT NULL,
+    estado_adopcion character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    fecha_solicitud timestamp with time zone,
+    fecha_aprobacion timestamp with time zone,
+    comentarios text COLLATE pg_catalog."default",
+    CONSTRAINT adopciones_pkey PRIMARY KEY (id_adopcion)
+)
+
+TABLESPACE pg_default;
+
+-- Table: public.seguimientos_adopcion
+
+-- DROP TABLE IF EXISTS public.seguimientos_adopcion;
+
+CREATE TABLE IF NOT EXISTS public.seguimientos_adopcion
+(
+    id_seguimiento integer NOT NULL DEFAULT nextval('seguimientos_adopcion_id_seguimiento_seq'::regclass),
+    id_adopcion integer NOT NULL,
+    fecha_seguimiento timestamp with time zone,
+    estado_mascota character varying(50) COLLATE pg_catalog."default",
+    comentarios_seguimiento text COLLATE pg_catalog."default",
+    CONSTRAINT seguimientos_adopcion_pkey PRIMARY KEY (id_seguimiento)
+)
+
+TABLESPACE pg_default;
+
+-- Table: public.eventos
+
+-- DROP TABLE IF EXISTS public.eventos;
+
+CREATE TABLE IF NOT EXISTS public.eventos
+(
+    id_evento integer NOT NULL DEFAULT nextval('eventos_id_evento_seq'::regclass),
+    nombre_evento character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    descripcion_evento text COLLATE pg_catalog."default",
+    fecha_evento timestamp with time zone NOT NULL,
+    id_refugio integer NOT NULL,
+    ubicacion text COLLATE pg_catalog."default",
+    CONSTRAINT eventos_pkey PRIMARY KEY (id_evento)
+)
+
+TABLESPACE pg_default;
