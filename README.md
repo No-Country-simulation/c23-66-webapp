@@ -1,4 +1,5 @@
-# c23-66-webapp
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=68c3b7&height=120&section=header"/>
+
 
 # Adopción de Mascotas 🐾
 
@@ -16,3 +17,8 @@ Nuestro objetivo es promover la adopción responsable y reducir la cantidad de m
 - ❤️ **Favoritos**: Guarda tus mascotas favoritas para considerarlas más adelante.
 - 🏢 **Gestión para refugios**: Refugios y hogares temporales pueden registrar mascotas, gestionar solicitudes y actualizar estados de adopción.
 
+<hr>
+
+#### ¡Gracias!
+
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=68c3b7&height=120&section=footer"/>
