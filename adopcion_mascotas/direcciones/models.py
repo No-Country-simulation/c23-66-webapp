@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Direccion(models.Model):
+class Direcciones(models.Model):
 	calle =models.CharField(max_length=100)
 	numero =models.CharField(max_length=10)
 	ciudad = models.CharField(max_length=50)
