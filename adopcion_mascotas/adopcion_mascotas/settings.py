@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Mascotas',
+    'adopcion_mascotas',
+    'usuarios',
+    'direcciones',
+    'refugios',
+
 ]
 
 MIDDLEWARE = [
@@ -77,11 +81,11 @@ WSGI_APPLICATION = 'adopcion_mascotas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tienda_db',
-        'USER': 'postgres', 
-        'PASSWORD': '1234',
+        'NAME': 'django_db',
+        'USER': 'root',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
     }
 }
 
