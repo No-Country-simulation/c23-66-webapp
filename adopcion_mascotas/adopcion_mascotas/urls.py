@@ -16,9 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import listar_mascotas
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/Mascotas/', listar_mascotas, name='listar_mascotas'),
-    path('Mascotas/', include('Mascotas.urls')),
+    path('mascotas/', include('mascotas.urls')),
 ]

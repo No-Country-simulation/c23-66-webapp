@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'usuarios',
     'direcciones',
     'refugios',
+    'mascotas',
 
 ]
 
@@ -81,9 +82,9 @@ WSGI_APPLICATION = 'adopcion_mascotas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_db',
-        'USER': 'root',
-        'PASSWORD': '12345',
+        'NAME': 'postgres',
+        'USER': 'daniel',
+        'PASSWORD': '89308930',
         'HOST': 'localhost',
         'PORT': '5432',
     }

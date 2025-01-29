@@ -13,5 +13,5 @@ class Mascota(models.Model):
     id_refugio = models.IntegerField()
     fecha_registro = models.DateTimeField(blank=True, null=True)
 
-    def __str__(self):
+    def str(self):
         return self.nombre_mascota
