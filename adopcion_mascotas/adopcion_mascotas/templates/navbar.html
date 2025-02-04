@@ -1,3 +1,44 @@
+{#<nav class="navbar">#}
+{#    <div class="nav-brand">#}
+{#        <img src="/path-to-your-logo.png" alt="Logo" class="nav-logo">#}
+{#        <span class="nav-title">TODOS MERECEN UN HOGAR</span>#}
+{#    </div>#}
+{##}
+{#    <div class="nav-links">#}
+{#        <a href="#" class="nav-link">¿Quiénes somos?</a>#}
+{#        <a href="#" class="nav-link">Adopción</a>#}
+{#        <a href="#" class="nav-link">Mascotas</a>#}
+{#        <a href="#" class="nav-link">Refugios</a>#}
+{#        <a href="#" class="nav-link">Contacto</a>#}
+{#    </div>#}
+{##}
+{#    <!-- Si el usuario está autenticado -->#}
+{#    {% if  user.is_authenticated %}#}
+{#        <div class="nav-user-menu">#}
+{#            <button class="user-menu-trigger">#}
+{#                <i class="fa-solid fa-user"></i>#}
+{#                <span class="username">{{ user.username }}</span>#}
+{#                <i class="fa-solid fa-chevron-down"></i>#}
+{#            </button>#}
+{#            <div class="dropdown-menu">#}
+{#                <a href="#" class="dropdown-item"><i class="fa-solid fa-heart"></i> Preferencias de Adopción</a>#}
+{#                <a href="#" class="dropdown-item"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>#}
+{#                <a href="#" class="dropdown-item"><i class="fa-solid fa-paw"></i> Mis Mascotas</a>#}
+{#                <a href="#" class="dropdown-item"><i class="fa-solid fa-bell"></i> Notificaciones</a>#}
+{#                <div class="dropdown-divider"></div>#}
+{#                <a href="{% url 'logout' %}" class="dropdown-item text-danger">#}
+{#                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% else %}#}
+{#        <div class="nav-auth">#}
+{#            <a href="{% url 'login' %}" class="btn btn-login">Iniciar Sesión</a>#}
+{#            <a href="{% url 'registro' %}" class="btn btn-register">Registrarse</a>#}
+{#        </div>#}
+{#    {% endif %}#}
+{#</nav>#}
+
 <nav class="navbar">
     <div class="nav-brand">
         <img src="/path-to-your-logo.png" alt="Logo" class="nav-logo">
@@ -14,21 +55,27 @@
 
     <!-- Si el usuario está autenticado -->
     {% if user.is_authenticated %}
-        <div class="nav-user-menu">
-            <button class="user-menu-trigger">
-                <i class="fa-solid fa-user"></i>
-                <span class="username">{{ user.username }}</span>
-                <i class="fa-solid fa-chevron-down"></i>
+        <div class="profile-container">
+            <button class="profile-button" id="profileButton" aria-haspopup="true" aria-expanded="false">
+                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thesprucepets.com%2Fthe-best-dog-instagrams-4165921&psig=AOvVaw063KWIwnlJQx6AxcPP4TZC&ust=1738788084060000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNCB98XwqosDFQAAAAAdAAAAABAE"
+                     alt="Foto de perfil" class="profile-img">
             </button>
-            <div class="dropdown-menu">
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-heart"></i> Preferencias de Adopción</a>
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-paw"></i> Mis Mascotas</a>
-                <a href="#" class="dropdown-item"><i class="fa-solid fa-bell"></i> Notificaciones</a>
+            <button class="dropdown-toggle" id="dropdownToggle">
+                ▼
+            </button>
+            <div class="dropdown-menu" id="dropdownMenu" role="menu">
+                <a href="#" role="menuitem"><i class="fa-solid fa-heart"></i> Preferencias de Adopción</a>
+                <a href="#" role="menuitem"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
+                <a href="#" role="menuitem"><i class="fa-solid fa-paw"></i> Mis Mascotas</a>
+                <a href="#" role="menuitem"><i class="fa-solid fa-bell"></i> Notificaciones</a>
                 <div class="dropdown-divider"></div>
-                <a href="{% url 'logout' %}" class="dropdown-item text-danger">
+                <a role="menuitem" class="text-danger" href="#"
+                   onclick="document.getElementById('logout-form').submit();">
                     <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
                 </a>
+                <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+                    {% csrf_token %}
+                </form>
             </div>
         </div>
     {% else %}
@@ -38,3 +85,5 @@
         </div>
     {% endif %}
 </nav>
+
+

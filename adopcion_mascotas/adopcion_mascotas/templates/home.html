@@ -3,7 +3,7 @@
 {% block title %}Inicio - Mi Sitio{% endblock %}
 
 {% block content %}
-    <h1>Bienvenido, {{ user.username }}</h1>
+    <h1>Bienvenido, {{ user.nombre }}</h1>
 
     {% if user.is_authenticated %}
         <p>Tu rol es: <strong>{{ usuario.rol }}</strong></p>
