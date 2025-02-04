@@ -90,7 +90,7 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #732d91;
-}
+/*button:hover {*/
+/*  background-color: #732d91;*/
+/*}*/
 
