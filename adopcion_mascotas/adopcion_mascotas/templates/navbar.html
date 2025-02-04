@@ -1,0 +1,40 @@
+<nav class="navbar">
+    <div class="nav-brand">
+        <img src="/path-to-your-logo.png" alt="Logo" class="nav-logo">
+        <span class="nav-title">TODOS MERECEN UN HOGAR</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="#" class="nav-link">¿Quiénes somos?</a>
+        <a href="#" class="nav-link">Adopción</a>
+        <a href="#" class="nav-link">Mascotas</a>
+        <a href="#" class="nav-link">Refugios</a>
+        <a href="#" class="nav-link">Contacto</a>
+    </div>
+
+    <!-- Si el usuario está autenticado -->
+    {% if user.is_authenticated %}
+        <div class="nav-user-menu">
+            <button class="user-menu-trigger">
+                <i class="fa-solid fa-user"></i>
+                <span class="username">{{ user.username }}</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-heart"></i> Preferencias de Adopción</a>
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-paw"></i> Mis Mascotas</a>
+                <a href="#" class="dropdown-item"><i class="fa-solid fa-bell"></i> Notificaciones</a>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'logout' %}" class="dropdown-item text-danger">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="nav-auth">
+            <a href="{% url 'login' %}" class="btn btn-login">Iniciar Sesión</a>
+            <a href="{% url 'registro' %}" class="btn btn-register">Registrarse</a>
+        </div>
+    {% endif %}
+</nav>
