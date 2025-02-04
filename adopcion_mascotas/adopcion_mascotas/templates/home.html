@@ -1,29 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html lang="es">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
-{#    <title>Bienvenido</title>#}
-{#</head>#}
-{#<body>#}
-{#    {% if user.is_authenticated %}#}
-{#        <h1>Bienvenido, {{ usuario.nombre }}</h1>#}
-{#        <p>Tu rol es: <strong>{{ usuario.rol }}</strong></p>#}
-{##}
-{#        <!-- Formulario de logout -->#}
-{#        <form method="POST" action="{% url 'logout' %}">#}
-{#            {% csrf_token %}#}
-{#            <button type="submit">Cerrar sesión</button>#}
-{#        </form>#}
-{##}
-{#    {% else %}#}
-{#        <h1>Bienvenido a nuestra plataforma</h1>#}
-{#        <p>Por favor, inicia sesión para continuar.</p>#}
-{#        <a href="{% url 'login' %}">Iniciar sesión</a>#}
-{#    {% endif %}#}
-{#</body>#}
-{#</html>#}
-
 {% extends "base.html" %}
 
 {% block title %}Inicio - Mi Sitio{% endblock %}
