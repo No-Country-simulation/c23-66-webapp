@@ -7,7 +7,8 @@ from usuarios.models import Usuario
 # Create your models here.
 class Refugio(models.Model):
 	nombre = models.CharField(max_length=100)
-	direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE, related_name="refugios")
+	direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE, related_name="refugios", null=True,
+									 blank=True)
 	usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name="refugios")
 	telefono = models.CharField(max_length=100)
 	descripcion = models.TextField()
