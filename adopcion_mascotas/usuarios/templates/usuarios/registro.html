@@ -1,42 +1,61 @@
-<form method="POST">
-    {% csrf_token %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Adopción de Mascotas</title>
+    <link rel="stylesheet" href="../../static/styles_registro.css">
+</head>
+<body>
+<div class="container">
+    <form id="registro-form" class="card" method="POST">
+        <h2>Registro</h2>
+        <p>Únete a nuestra comunidad de adopción de mascotas</p>
 
-    <!-- Campo para el correo electrónico -->
-    <label for="email">Correo electrónico</label>
-    {{ usuario_form.email }}
+        {% csrf_token %}
 
-    <!-- Campo para el nombre -->
-    <label for="nombre">Nombre</label>
-    {{ usuario_form.nombre }}
+        <div class="form-group">
+            <label>Elige tu rol:</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" id="rol_adoptante" name="rol" value="ADOPTANTE"
+                           {% if usuario_form.rol.value == 'ADOPTANTE' %}checked{% endif %}>
+                    <span>🐾 Adoptante</span>
+                </label>
+                <label>
+                    <input type="radio" id="rol_refugio" name="rol" value="REFUGIO"
+                           {% if usuario_form.rol.value == 'REFUGIO' %}checked{% endif %}>
+                    <span>🏠 Refugio</span>
+                </label>
+            </div>
+        </div>
 
-    <!-- Campo para la contraseña -->
-    <label for="password">Contraseña</label>
-    {{ usuario_form.password }}
+        <div class="form-group">
+            <label for="nombre">Nombre <span id="nombre-label">completo</span></label>
+            {{ usuario_form.nombre }}
+        </div>
 
-    <!-- Selección de rol -->
-    <label>Rol</label>
-    <label for="rol_adoptante">
-        <input type="radio" id="rol_adoptante" name="rol" value="ADOPTANTE"
-               {% if usuario_form.rol.value == 'ADOPTANTE' %}checked{% endif %}>
-        Adoptante
-    </label>
-    <label for="rol_refugio">
-        <input type="radio" id="rol_refugio" name="rol" value="REFUGIO"
-               {% if usuario_form.rol.value == 'REFUGIO' %}checked{% endif %}>
-        Refugio
-    </label>
+        <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            {{ usuario_form.email }}
+        </div>
 
-    <!-- Campo adicional para refugio -->
-    <div id="refugio_nombre" style="display: none;">
-        <label for="nombre_refugio">Nombre del Refugio</label>
-        <input type="text" name="nombre_refugio" id="nombre_refugio">
-    </div>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            {{ usuario_form.password }}
+        </div>
 
-    <button type="submit">Registrarse</button>
-</form>
+        <div id="refugio_nombre" class="form-group" style="display: none;">
+            <label for="nombre_refugio">Nombre del Refugio</label>
+            <input type="text" name="nombre_refugio" id="nombre_refugio">
+        </div>
 
+        <button type="submit">Registrarse</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
 <script>
-    // Script para mostrar u ocultar el campo del nombre del refugio basado en el rol seleccionado
     document.addEventListener("DOMContentLoaded", function () {
         let rolAdoptante = document.getElementById("rol_adoptante");
         let rolRefugio = document.getElementById("rol_refugio");
@@ -51,4 +70,50 @@
 
         toggleRefugioField(); // Ejecutar al cargar la página por si ya hay valores seleccionados
     });
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("registro-form");
+        const rolInputs = document.querySelectorAll('input[name="rol"]');
+        const nombreLabel = document.getElementById("nombre-label");
+        const refugioNombreDiv = document.getElementById("refugio_nombre"); // Nombre del Refugio
+        const nombreRefugioInput = document.getElementById("nombre_refugio");
+
+        function updateBackground(rol) {
+            document.body.className = ""; // Limpia las clases existentes
+            document.body.classList.add(rol);
+        }
+
+        function toggleRefugioFields() {
+            const selectedRol = document.querySelector('input[name="rol"]:checked').value;
+
+            if (selectedRol === "REFUGIO") {
+                nombreLabel.textContent = "del refugio";
+                refugioNombreDiv.style.display = "block";
+                nombreRefugioInput.required = true;
+            } else {
+                nombreLabel.textContent = "completo";
+                refugioNombreDiv.style.display = "none";
+                nombreRefugioInput.required = false;
+            }
+
+            updateBackground(selectedRol.toLowerCase());
+        }
+
+        rolInputs.forEach((input) => {
+            input.addEventListener("change", toggleRefugioFields);
+        });
+
+        // Establecer el estado inicial según la opción seleccionada
+        toggleRefugioFields();
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // Aquí puedes agregar la lógica para enviar los datos a Django usando fetch() si no usas un formulario tradicional
+            alert("Formulario enviado con éxito!");
+        });
+    });
+
+
 </script>
+</body>
+</html>
