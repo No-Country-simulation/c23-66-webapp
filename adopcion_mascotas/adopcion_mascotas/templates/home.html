@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Mi Sitio{% endblock %}
+
+{% block content %}
+    <h1>Bienvenido, {{ user.nombre }}</h1>
+
+    {% if user.is_authenticated %}
+        <p>Tu rol es: <strong>{{ usuario.rol }}</strong></p>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    {% else %}
+        <h1>Bienvenido a nuestra plataforma</h1>
+        <p>Por favor, inicia sesión para continuar.</p>
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+    {% endif %}
+{% endblock %}

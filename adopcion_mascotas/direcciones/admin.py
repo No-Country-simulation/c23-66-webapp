@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from direcciones.models import Direcciones
+from direcciones.models import Direccion
 
 # Register your models here.
-admin.site.register(Direcciones)
+admin.site.register(Direccion)
